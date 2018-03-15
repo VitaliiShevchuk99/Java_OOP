@@ -1,0 +1,43 @@
+package hello;
+
+public class main {
+
+    public static void main(String[] args) {
+        double a = 3;
+        double b = 2.5;
+        double c = -0.5;
+
+        double x1,x2;
+        if ((a==0)&&(b!=0)){
+            x1=x2=c/b;
+            System.out.print("x1=");
+            System.out.println(x1);
+            System.out.print("x2=");
+            System.out.println(x2);
+            return;
+        }
+        double d=(b*b),f=4*a*c;
+        d=d-f;
+        if (d<0){
+            System.out.println("x1=");
+            System.out.println("x2=");
+
+            return;
+        }else{
+
+            x1=(-b+Math.sqrt(d))/(2*a);
+            x2=(-b-Math.sqrt(d))/(2*a);
+            if ((Double.isNaN(x1))||(Double.isNaN(x2))){
+                System.out.println("x1=");
+                System.out.println("x2=");
+            }else {
+                System.out.print("x1=");
+                System.out.println(x1);
+                System.out.print("x2=");
+                System.out.println(x2);
+            }
+        }
+
+    }
+}
+
