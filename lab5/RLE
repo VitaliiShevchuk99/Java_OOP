@@ -1,0 +1,38 @@
+package com.company;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+	// write your code here
+        Scanner in = new Scanner(System.in);
+        String str = in.nextLine();
+
+
+        char currentChar = str.charAt(0);
+        int currentCharCount = 1;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 1; i <= str.length(); i++)
+        {
+            char c = i < str.length() ? str.charAt(i) : 0;
+            if (i == str.length() || currentCharCount == 9 || c != currentChar)
+            {
+                sb.append(currentChar);
+                if (currentCharCount > 1)
+                {
+                    sb.append((char)(currentCharCount + '0'));
+                }
+                currentCharCount = 1;
+                currentChar = c;
+            }
+            else
+            {
+                currentCharCount++;
+            }
+        }
+        System.out.println(sb.toString());
+    }
+
+    private static class nextLine {
+    }
+}
