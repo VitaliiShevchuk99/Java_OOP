@@ -1,0 +1,94 @@
+package com.tasks7.rpn;
+
+import java.util.Deque;
+import java.util.LinkedList;
+
+public class Application {
+
+    public static double parse(String rpnString) {
+        Deque<Double> stack = new LinkedList<>();
+        StringBuilder str = new StringBuilder("");
+
+        rpnString = rpnString.trim();
+
+        for (int i = 0, length = rpnString.length(); i < length; i++)
+        {
+            char sym = rpnString.charAt(i);
+
+            if ((sym >= '0' && sym <= '9') || sym == '.' || (sym == '-' && i != length - 1 && rpnString.charAt(i + 1) != ' '))
+            {
+                str.append(sym);
+            }
+
+            else if (sym == ' ')
+            {
+                if (str.length() > 0)
+                {
+                    stack.push(Double.valueOf(str.toString()));
+
+                    str = new StringBuilder("");
+                }
+            }
+
+            else if (sym == '+' || sym == '-' || sym == '*' || sym == '/')
+            {
+                Double first, second;
+                try
+                {
+                    second = stack.pop();
+                    first = stack.pop();
+                }
+                catch (Exception e)
+                {
+                    throw new RPNParserException();
+                }
+
+                switch (sym)
+                {
+                    case '+':
+                        stack.push(first + second);
+                        break;
+
+                    case '-':
+                        stack.push(first - second);
+                        break;
+
+                    case '*':
+                        stack.push(first * second);
+                        break;
+
+                    case '/':
+                        if (second == 0)
+                        {
+                            throw new ArithmeticException();
+                        }
+
+                        stack.push(first / second);
+                        break;
+                }
+            }
+
+            else
+            {
+                throw new RPNParserException();
+            }
+        }
+
+        if (stack.size() > 1)
+        {
+            throw new RPNParserException();
+        }
+
+        return stack.pop();
+    }
+
+    public static void main(String[] args) {
+        if (args == null || args.length != 1 || args[0] == null)
+        {
+            throw new RPNParserException();
+        }
+
+        System.out.println(" = " + Application.parse(args[0]));
+    }
+
+}
