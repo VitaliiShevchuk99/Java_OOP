@@ -1,0 +1,89 @@
+package com.tasks3.linkedlist;
+
+public class LinkedList {
+private Node head;
+private Node tail;
+        public LinkedList() {}
+        
+        public void add(Integer data) {
+
+            Node node = new Node();
+
+           node.setData(data);
+           if(tail == null)
+            {
+                head = node;
+                tail = node;
+            }
+            else {
+                tail.setNext(node);
+                tail = node;
+            }
+
+        }
+        
+        public Integer get(int index) {
+            int count=0;
+            Node t=head;
+            while (t!=null && index<size())
+            {
+                if(index==count)
+                    return t.getData();
+                  else{  count++;
+                  t=t.getNext();}
+
+            }
+            return null;
+
+        }
+        
+        public boolean delete(int index) {
+            int count=0;
+            Node t=head;
+            if (head == null)
+                return false;
+            while (t!=null && index<size()) {
+                if (index == count) {
+
+                    Node temp = head;
+
+                    if (index == 0)
+                    {
+                        head = temp.getNext();   
+                        return true;
+                    }
+
+                    for (int i = 0; temp != null && i < index - 1; i++)
+                        temp = temp.getNext();
+
+
+                    if (temp == null || temp.getNext() == null)
+                        return false;
+                  
+                    Node next = temp.getNext().getNext();
+
+                    temp.setNext(next);
+                    return true;
+                } else {
+                    count++;
+                    t = t.getNext();
+                }
+            }
+
+
+
+            return  false;
+        }
+        
+        public int size() {
+            int counter=0;
+            Node t = head;    
+            while (t != null)     
+            {
+                t = t.getNext();
+                counter++;
+            }
+            return counter;
+        }
+
+}
