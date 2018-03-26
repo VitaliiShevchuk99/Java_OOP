@@ -1,0 +1,8 @@
+package com.company;
+
+public class Exit implements Main.Command {
+
+    public void execute() {
+        System.out.println("GoodBye!");
+    }
+}
