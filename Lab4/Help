@@ -1,0 +1,7 @@
+package com.company;
+
+public class Help implements Main.Command{
+    public void execute() {
+        System.out.println("Help exercutes");
+    }
+}
