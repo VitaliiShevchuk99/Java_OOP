@@ -1,0 +1,16 @@
+package com.company;
+
+public class Echo implements Main.Command {
+    private String command;
+
+    public Echo(String command)
+    {
+        this.command = command;
+    }
+
+
+    public void execute()
+    {
+        System.out.println(this.command);
+    }
+}
