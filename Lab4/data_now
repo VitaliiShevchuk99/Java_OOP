@@ -1,0 +1,10 @@
+package com.company;
+
+public class DateNow implements Main.Command
+{
+
+    public void execute()
+    {
+        System.out.println(System.currentTimeMillis());
+    }
+}
