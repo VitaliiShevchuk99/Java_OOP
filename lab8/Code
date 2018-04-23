@@ -1,0 +1,48 @@
+package com.company;
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+	// write your code here
+        Scanner scanner=new Scanner(System.in);
+
+        StringBuilder str= new StringBuilder();
+        StringBuilder str2= new StringBuilder();
+
+        String text= scanner.nextLine();
+        //str.append(text);
+        int num=0;
+        String word= scanner.nextLine();
+        int lenght=scanner.nextInt();
+
+
+        boolean t=true;
+        char[] arr= text.toCharArray();
+
+        for(int i=0;i<text.length();i++){
+            if(arr[i]==' '&&num==lenght){
+                str.append(word+" ");
+                str2.delete(0,num);
+                num=0;
+
+            }if(arr[i]==' '&&num!=lenght&&str2.length()!=0){
+                str.append(str2+" ");
+                str2.delete(0,num);
+                num=0;
+
+            } else if(arr[i]!=' ')
+            {
+                num++;
+                str2.append(arr[i]);
+            }
+
+        }
+        str.append(str2);
+        str2.delete(0,num);
+        num=0;
+        System.out.println(str);
+        System.out.println(text);
+    }
+}
